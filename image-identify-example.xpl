@@ -33,20 +33,15 @@
 
   <p:output port="result" primary="true" sequence="true">
     <p:pipe step="image-identify" port="report"/>
-    <p:pipe step="png" port="report"/>
   </p:output>
 
   <p:import href="image-identify-declaration.xpl"/>
 
-  <letex:image-identify name="image-identify">
-    <p:with-option name="href" select="$image-uri"/>
-  </letex:image-identify>
-  
-  <letex:image-identify name="png">
+  <tr:image-identify name="image-identify">
     <p:with-option name="href" select="(//dbk:imagedata)[2]/@fileref">
       <p:pipe port="source" step="pipeline"/>
     </p:with-option>
-  </letex:image-identify>
+  </tr:image-identify>
 
   <p:sink/>
 
