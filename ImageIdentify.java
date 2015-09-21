@@ -13,6 +13,7 @@ import java.io.StringReader;
 import java.lang.reflect.Field;
 import java.net.URI;
 
+import javax.imageio.IIOException;
 import javax.imageio.ImageIO;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
@@ -142,18 +143,20 @@ public class ImageIdentify extends DefaultStep {
     	
     	Integer colorSpaceType = null;
     	
-    	ICC_Profile iccProfile = Imaging.getICCProfile(file);
-    	if (iccProfile != null) {
-    		colorSpaceType = iccProfile.getColorSpaceType();
-    	} else {
-    		try {
-				BufferedImage image = Imaging.getBufferedImage(file);
-				colorSpaceType  = image.getColorModel().getColorSpace().getType();
-			} catch (ImageReadException er) {
+		try {
+			BufferedImage image = Imaging.getBufferedImage(file);
+			colorSpaceType  = image.getColorModel().getColorSpace().getType();
+		} catch (ImageReadException er) {
+			try {
 				BufferedImage image = ImageIO.read(file);
-				colorSpaceType  = image.getColorModel().getColorSpace().getType();
+				colorSpaceType = image.getColorModel().getColorSpace().getType();
+			} catch (IIOException e) {
+				ICC_Profile iccProfile = Imaging.getICCProfile(file);
+		    	if (iccProfile != null) {
+		    		colorSpaceType = iccProfile.getColorSpaceType();
+		    	}
 			}
-    	}
+		}
 		
 		for (Field field : ColorSpace.class.getDeclaredFields()) {
 			if (field.getName().contains("TYPE") || field.getName().contains("CS")) {
