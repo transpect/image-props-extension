@@ -1,7 +1,6 @@
 <p:declare-step 
   xmlns:p="http://www.w3.org/ns/xproc" 
   xmlns:c="http://www.w3.org/ns/xproc-step"
-  xmlns:letex="http://www.le-tex.de/namespace" 
   xmlns:tr="http://transpect.io" 
   xmlns:dbk="http://docbook.org/ns/docbook" 
   name="pipeline" 
