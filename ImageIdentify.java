@@ -183,7 +183,11 @@ public class ImageIdentify extends DefaultStep {
 		
 		result += "\t<c:result name=\"height\" value=\""+height+"px\"/>\n";
 		
-		result += "\t<c:result name=\"density\" value=\""+density+"dpi\"/>\n";
+		if (density == -1) {
+			result += "\t<c:result name=\"density\" value=\"72dpi\"/>\n";
+		} else {
+			result += "\t<c:result name=\"density\" value=\""+density+"dpi\"/>\n";
+		}
 		
 		if (colorSpace != null)
 			result += "\t<c:result name=\"colorspace\" value=\""+colorSpace+"\"/>\n";
