@@ -49,6 +49,7 @@ side effect, it will create a c:results document with image properties
 on the report port. The result (er, report) of the sample invocation
 above looks like this:
 
+```
 <c:results xmlns:c="http://www.w3.org/ns/xproc-step" name="logo-letex.png">
   <c:result name="mimetype" value="image/png"/>
   <c:result name="formatdescription" value="PNG Portable Network Graphics"/>
@@ -66,15 +67,22 @@ above looks like this:
   <c:result name="height" value="700px"/>
   <c:result name="density" value="96dpi"/>
 </c:results>
+```
 
-Compilation (Unix paths):
+## Compilation (Unix paths):
+
+```
 javac -cp ../../../calabash.jar:xmlgraphics-commons-1.5.jar:commons-imaging-1.0-SNAPSHOT.jar \
   ImageIdentify.java
-On Cygwin:
+```
+   
+### On Cygwin:
+
+```
 /cygdrive/c/Program\ Files\ \(x86\)/Java/jdk1.7.0_40/bin/javac \
   -cp $(cygpath -map ../../../calabash.jar:xmlgraphics-commons-1.5.jar:commons-imaging-1.0-SNAPSHOT.jar) \
   ImageIdentify.java
-
+```
 
 (C) 2013--2015, le-tex publising services GmbH.  All rights reserved.
 Published under Simplified BSD License:
