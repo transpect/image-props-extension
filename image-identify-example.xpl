@@ -21,7 +21,7 @@
           </mediaobject>
           <mediaobject>
             <imageobject>
-              <imagedata fileref="logo-letex.png"/>
+              <imagedata fileref="test/logo-letex.png"/>
             </imageobject>
           </mediaobject>
           <para>Text</para>

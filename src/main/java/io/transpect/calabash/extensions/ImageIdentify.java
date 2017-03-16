@@ -1,3 +1,5 @@
+package io.transpect.calabash.extensions;
+
 /**
  * Extension for image identifying
  *
