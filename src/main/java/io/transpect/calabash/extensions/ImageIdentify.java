@@ -1,5 +1,4 @@
 package io.transpect.calabash.extensions;
-
 /**
  * Extension for image identifying
  *
@@ -124,8 +123,12 @@ public class ImageIdentify extends DefaultStep {
 			density = imageInfo.getPhysicalHeightDpi();
 			compressionAlgorithm = imageInfo.getCompressionAlgorithm();
 			transparency = imageInfo.isTransparent();
-			
-			getColorSpace(file);
+			int color = imageInfo.getColorType();
+			if (color == 1){
+			    colorSpace = "GRAYSCALE";
+			} else {
+			    getColorSpace(file);
+			}
 		} catch (ImageReadException e) {
 			ImageManager imageManager = new ImageManager(new DefaultImageContext());
 			ImageSessionContext sessionContext = new DefaultImageSessionContext(imageManager.getImageContext(), null);
