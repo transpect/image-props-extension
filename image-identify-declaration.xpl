@@ -24,4 +24,8 @@
   <p:option name="href">
     <p:documentation>The image file’s URI.</p:documentation>
   </p:option>
+  <p:option name="metadata">
+    <p:documentation>Set to 'yes' to parse additional image metadata, e.g. Exif</p:documentation>
+  </p:option>
+
 </p:declare-step>

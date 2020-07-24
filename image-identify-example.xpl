@@ -37,7 +37,7 @@
     <p:with-param name="image-uri" select="$image-uri"/>
   </p:template>
 
-  <tr:image-identify name="image-identify">
+  <tr:image-identify name="image-identify" metadata="yes">
     <p:with-option name="href" select="(//dbk:imagedata)[1]/@fileref"/>
   </tr:image-identify>
 
