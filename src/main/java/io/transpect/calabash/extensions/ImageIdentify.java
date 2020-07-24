@@ -137,7 +137,7 @@ public class ImageIdentify extends DefaultStep {
       width = info.getSize().getWidthPx();
     }
 
-    return getXmlResult(getMetadataBool);
+    return getXmlResult(file, getMetadataBool);
     // getInfo();
   }
 
@@ -170,7 +170,7 @@ public class ImageIdentify extends DefaultStep {
     }
   }
 
-  private XdmNode getXmlResult (Boolean getMetadataBool) {
+  private XdmNode getXmlResult (File file, Boolean getMetadataBool) {
     QName xml_base = new QName("xml", "http://www.w3.org/XML/1998/namespace" ,"base");
     QName c_results = new QName("c", "http://www.w3.org/ns/xproc-step" ,"results");
     QName c_name = new QName("name");
@@ -178,6 +178,7 @@ public class ImageIdentify extends DefaultStep {
     TreeWriter tree = new TreeWriter(runtime);
     tree.startDocument(step.getNode().getBaseURI());
     tree.addStartElement(c_results);
+    tree.addAttribute(c_name, file.getName());
     if (formatDescription != null){
       tree.addStartElement(XProcConstants.c_result);
       tree.addAttribute(c_name, "formatdescription");
