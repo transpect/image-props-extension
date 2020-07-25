@@ -179,6 +179,10 @@ public class ImageIdentify extends DefaultStep {
     tree.startDocument(step.getNode().getBaseURI());
     tree.addStartElement(c_results);
     tree.addAttribute(c_name, file.getName());
+    tree.addStartElement(XProcConstants.c_result);
+    tree.addAttribute(c_name, "mimetype");
+    tree.addAttribute(c_value, mimeType);
+    tree.addEndElement();
     if (formatDescription != null){
       tree.addStartElement(XProcConstants.c_result);
       tree.addAttribute(c_name, "formatdescription");
@@ -193,11 +197,11 @@ public class ImageIdentify extends DefaultStep {
     }
     tree.addStartElement(XProcConstants.c_result);
     tree.addAttribute(c_name, "width");
-    tree.addAttribute(c_value, String.valueOf(width));
+    tree.addAttribute(c_value, String.valueOf(width) + "px");
     tree.addEndElement();
     tree.addStartElement(XProcConstants.c_result);
     tree.addAttribute(c_name, "height");
-    tree.addAttribute(c_value, String.valueOf(height));
+    tree.addAttribute(c_value, String.valueOf(height) + "px");
     tree.addEndElement();
     tree.addStartElement(XProcConstants.c_result);
     tree.addAttribute(c_name, "density");
