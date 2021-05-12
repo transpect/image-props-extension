@@ -49,7 +49,7 @@ side effect, it will create a c:results document with image properties
 on the report port. The result (er, report) of the sample invocation
 above looks like this:
 
-```
+```xml
 <c:results xmlns:c="http://www.w3.org/ns/xproc-step" name="logo-letex.png">
   <c:result name="mimetype" value="image/png"/>
   <c:result name="formatdescription" value="PNG Portable Network Graphics"/>
