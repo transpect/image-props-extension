@@ -58,6 +58,7 @@ public class ImageIdentify extends DefaultStep {
   private int height;
   private int width;
   private int density;
+  private int depth;
   private Boolean transparency = null;
   private Metadata metadata = null;
     
@@ -115,6 +116,7 @@ public class ImageIdentify extends DefaultStep {
     try {
       org.apache.commons.imaging.ImageInfo imageInfo = Imaging.getImageInfo(file);
       formatDescription = imageInfo.getFormatName();
+      depth = imageInfo.getBitsPerPixel();
       mimeType = imageInfo.getMimeType();
       formatDetails = imageInfo.getFormatDetails();
       height = imageInfo.getHeight();
@@ -198,6 +200,10 @@ public class ImageIdentify extends DefaultStep {
     tree.addStartElement(XProcConstants.c_result);
     tree.addAttribute(c_name, "width");
     tree.addAttribute(c_value, String.valueOf(width) + "px");
+    tree.addEndElement();
+    tree.addStartElement(XProcConstants.c_result);
+    tree.addAttribute(c_name, "depth");
+    tree.addAttribute(c_value, String.valueOf(depth));
     tree.addEndElement();
     tree.addStartElement(XProcConstants.c_result);
     tree.addAttribute(c_name, "height");
