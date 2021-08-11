@@ -47,6 +47,9 @@ import com.xmlcalabash.library.DefaultStep;
 import com.xmlcalabash.model.RuntimeValue;
 import com.xmlcalabash.runtime.XAtomicStep;
 import com.xmlcalabash.util.TreeWriter;
+import net.sf.saxon.om.AttributeMap;
+import net.sf.saxon.om.EmptyAttributeMap;
+import com.xmlcalabash.util.TypeUtils;
 
 public class ImageIdentify extends DefaultStep {
 
@@ -178,73 +181,89 @@ public class ImageIdentify extends DefaultStep {
     QName c_name = new QName("name");
     QName c_value = new QName("value");
     TreeWriter tree = new TreeWriter(runtime);
+		
+    AttributeMap attrs = EmptyAttributeMap.getInstance();
+		attrs.put(TypeUtils.attributeInfo(new QName("c_name"), file.getName()));
     tree.startDocument(step.getNode().getBaseURI());
-    tree.addStartElement(c_results);
-    tree.addAttribute(c_name, file.getName());
-    tree.addStartElement(XProcConstants.c_result);
-    tree.addAttribute(c_name, "mimetype");
-    tree.addAttribute(c_value, mimeType);
+    tree.addStartElement(c_results,attrs);
+		
+		attrs = EmptyAttributeMap.getInstance();
+		attrs.put(TypeUtils.attributeInfo(new QName("c_name"), "mimetype"));
+		attrs.put(TypeUtils.attributeInfo(new QName("c_value"), mimeType));
+    tree.addStartElement(XProcConstants.c_result,attrs);
+		
     tree.addEndElement();
     if (formatDescription != null){
-      tree.addStartElement(XProcConstants.c_result);
-      tree.addAttribute(c_name, "formatdescription");
-      tree.addAttribute(c_value, formatDescription);
+			attrs = EmptyAttributeMap.getInstance();
+			attrs.put(TypeUtils.attributeInfo(new QName("c_name"), "formatdescription"));
+			attrs.put(TypeUtils.attributeInfo(new QName("c_value"), formatDescription));
+      tree.addStartElement(XProcConstants.c_result,attrs);
       tree.addEndElement();
     }
     if (formatDetails != null){
-      tree.addStartElement(XProcConstants.c_result);
-      tree.addAttribute(c_name, "formatdetails");
-      tree.addAttribute(c_value, formatDetails);
+			attrs = EmptyAttributeMap.getInstance();
+			attrs.put(TypeUtils.attributeInfo(new QName("c_name"), "formatdetails"));
+			attrs.put(TypeUtils.attributeInfo(new QName("c_value"), formatDetails));
+      tree.addStartElement(XProcConstants.c_result,attrs);
       tree.addEndElement();
     }
-    tree.addStartElement(XProcConstants.c_result);
-    tree.addAttribute(c_name, "width");
-    tree.addAttribute(c_value, String.valueOf(width) + "px");
+		attrs = EmptyAttributeMap.getInstance();
+		attrs.put(TypeUtils.attributeInfo(new QName("c_name"), "width"));
+		attrs.put(TypeUtils.attributeInfo(new QName("c_value"), String.valueOf(width) + "px"));
+    tree.addStartElement(XProcConstants.c_result,attrs);
     tree.addEndElement();
-    tree.addStartElement(XProcConstants.c_result);
-    tree.addAttribute(c_name, "depth");
-    tree.addAttribute(c_value, String.valueOf(depth));
+		attrs = EmptyAttributeMap.getInstance();
+		attrs.put(TypeUtils.attributeInfo(new QName("c_name"), "depth"));
+		attrs.put(TypeUtils.attributeInfo(new QName("c_value"), String.valueOf(depth)));
+    tree.addStartElement(XProcConstants.c_result,attrs);
     tree.addEndElement();
-    tree.addStartElement(XProcConstants.c_result);
-    tree.addAttribute(c_name, "height");
-    tree.addAttribute(c_value, String.valueOf(height) + "px");
+		attrs = EmptyAttributeMap.getInstance();
+		attrs.put(TypeUtils.attributeInfo(new QName("c_name"), "height"));
+		attrs.put(TypeUtils.attributeInfo(new QName("c_value"), String.valueOf(height) + "px"));
+    tree.addStartElement(XProcConstants.c_result,attrs);
     tree.addEndElement();
-    tree.addStartElement(XProcConstants.c_result);
-    tree.addAttribute(c_name, "density");
+		attrs = EmptyAttributeMap.getInstance();
+		attrs.put(TypeUtils.attributeInfo(new QName("c_name"), "density"));
     if (density == -1) {
-      tree.addAttribute(c_value, "72dpi");
+			attrs.put(TypeUtils.attributeInfo(new QName("c_value"), "72dpi"));
     } else {
-      tree.addAttribute(c_value, String.valueOf(density) + "dpi");
+			attrs.put(TypeUtils.attributeInfo(new QName("c_value"), String.valueOf(density) + "dpi"));
     }
+    tree.addStartElement(XProcConstants.c_result,attrs);
     tree.addEndElement();
     if (colorSpace != null){
-      tree.addStartElement(XProcConstants.c_result);
-      tree.addAttribute(c_name, "colorspace");
-      tree.addAttribute(c_value, colorSpace);
+		attrs = EmptyAttributeMap.getInstance();
+		attrs.put(TypeUtils.attributeInfo(new QName("c_name"), "colorspace"));
+		attrs.put(TypeUtils.attributeInfo(new QName("c_value"), colorSpace));
+      tree.addStartElement(XProcConstants.c_result,attrs);
       tree.addEndElement();
     }
     if (transparency != null){
-      tree.addStartElement(XProcConstants.c_result);
-      tree.addAttribute(c_name, "transparency");
-      tree.addAttribute(c_value, String.valueOf(transparency));
+		attrs = EmptyAttributeMap.getInstance();
+		attrs.put(TypeUtils.attributeInfo(new QName("c_name"), "transparency"));
+		attrs.put(TypeUtils.attributeInfo(new QName("c_value"), String.valueOf(transparency)));
+      tree.addStartElement(XProcConstants.c_result,attrs);
       tree.addEndElement();
     }
     if (compressionAlgorithm != null){
-      tree.addStartElement(XProcConstants.c_result);
-      tree.addAttribute(c_name, "compressionalgorithm");
-      tree.addAttribute(c_value, compressionAlgorithm);
+		attrs = EmptyAttributeMap.getInstance();
+		attrs.put(TypeUtils.attributeInfo(new QName("c_name"), "compressionalgorithm"));
+		attrs.put(TypeUtils.attributeInfo(new QName("c_value"), compressionAlgorithm));
+      tree.addStartElement(XProcConstants.c_result,attrs);
       tree.addEndElement();
     }
     if (metadata != null && getMetadataBool) {
       for (Directory directory : metadata.getDirectories()) {
         String dir = directory.getName();
-        tree.addStartElement(XProcConstants.c_param_set);
-        tree.addAttribute(c_name, dir);
+				attrs = EmptyAttributeMap.getInstance();
+				attrs.put(TypeUtils.attributeInfo(new QName("c_name"), dir));
+        tree.addStartElement(XProcConstants.c_param_set,attrs);
         for (Tag tag : directory.getTags()) {
           String value = tag.getDescription();
-          tree.addStartElement(XProcConstants.c_param);
-          tree.addAttribute(c_name, tag.getTagName());
-          tree.addAttribute(c_value, value);
+					attrs = EmptyAttributeMap.getInstance();
+					attrs.put(TypeUtils.attributeInfo(new QName("c_name"), tag.getTagName()));
+					attrs.put(TypeUtils.attributeInfo(new QName("c_value"), value));
+          tree.addStartElement(XProcConstants.c_param,attrs);
           tree.addEndElement();
         }
         tree.addEndElement();
