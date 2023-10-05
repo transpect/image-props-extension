@@ -170,8 +170,9 @@ You can also print additional image metadata like Exif when you set the option
 ## Compilation (Unix paths):
 
 ```
-javac -cp ../../../calabash.jar:xmlgraphics-commons-1.5.jar:commons-imaging-1.0-SNAPSHOT.jar \
-  ImageIdentify.java
+javac -target 1.8 \
+  -cp ../../../distro/xmlcalabash-1.3.2-100.jar:lib/xmlgraphics-commons-1.5.jar:lib/commons-imaging-1.0-alpha2.jar:lib/metadata-extractor-2.18.0.jar:lib/xmpcore-6.0.6.jar \
+  src/main/java/io/transpect/calabash/extensions/ImageIdentify.java
 ```
    
 ### On Cygwin:
