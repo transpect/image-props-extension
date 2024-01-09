@@ -131,7 +131,7 @@ public class ImageIdentify extends DefaultStep {
       colorSpace = imageInfo.getColorType().toString();
       metadata = ImageMetadataReader.readMetadata(file);      
       
-    } catch (ImageReadException e) {
+    } catch (Exception e) {
       ImageManager imageManager = new ImageManager(new DefaultImageContext());
       ImageSessionContext sessionContext = new DefaultImageSessionContext(imageManager.getImageContext(), null);
 
